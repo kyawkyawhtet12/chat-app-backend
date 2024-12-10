@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import io from "../socket.js"
+import {io} from "../socket.js"
 
 const prisma = new PrismaClient();
 
@@ -9,8 +9,8 @@ const sendMessage = async (req, res) => {
     const message = await prisma.message.create({
         data: {
             content : content,
-            userId : userId,
-            chatRoomId : chatRoomId,
+            userId : parseInt(userId),
+            chatRoomId : parseInt(chatRoomId),
         },
         include : {
             user : true,
